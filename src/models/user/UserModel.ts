@@ -87,12 +87,29 @@ const getUser = async () => {
 //     }
 // };
 
-const getSingleUser = async (idValue: string) => {
-    console.log("id value:", idValue);
+// const deleteUser = async (userId: string) => {
+//     try {
+//         console.log(userId)
+//       const deletedUser = await User.findOneAndDelete({"_id": userId});
+//       if (deletedUser) {
+//         console.log(`Deleted user with ID ${userId}`);
+//         return deletedUser;
+//       } else {
+//         console.log(`User with ID ${userId} not found`);
+//         return false;
+//       }
+//     } catch (err) {
+//       console.error(err);
+//       return null;
+//     }
+//   };
+
+const getSingleUser = async (userId: string) => {
+    console.log("id value:", userId);
     try {
         const users = await User.find(
-            { _id: { $in: '644c373c859da9d501599bb2' } },
-            // { _id: { $in: idValue } },
+            // { _id: { $in: '644c373c859da9d501599bb2' } },
+            { _id: { $in: userId } },
             { email: 1, password: 1, role: 1 }
         );
         console.log(users)

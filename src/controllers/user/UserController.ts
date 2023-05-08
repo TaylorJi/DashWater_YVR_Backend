@@ -53,43 +53,14 @@ const getUser = async (_req: Request, res: Response) => {
     }
 };
 
-// CRUD test function with MongoDB
-// const getSingleUser = async (idArray: string[]) => {
-//     console.log("Backend response3");
-//     try {
-//         const user = await UserModel.getSingleUser(idArray);
-//         console.log(user)
-
-//         if (user) {
-//             console.log("Get single user data:", user);
-//             return user;
-//         } else {
-//             return null;
-//         }
-//     } catch (error) {
-//         console.error("Error retrieving user:", error);
-//         return null;
-//     }
-// };
-
-
-const getSingleUser = async (idValue: string) => {
-    console.log("Backend response3");
-    console.log(typeof(idValue))
-    console.log(idValue)
-    try {
-        const users = await UserModel.getSingleUser(idValue);
-        // console.log(users);
-
-        if (users !== null) {
-            console.log("Get single user data:", users);
-            return users;
-        } else {
-            return null;
-        }
-    } catch (error) {
-        console.error("Error retrieving user:", error);
-        return null;
+const getSingleUser = async (req: Request, res: Response) => {
+    const userId = req.params.id;
+    const response = await UserModel.getSingleUser(userId)
+    console.log(userId)
+    if (response) {
+        res.status(200).json({ data: response });
+    } else {
+        res.status(500).json({ message: "There was an error with the request." });
     }
 };
 
