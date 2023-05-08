@@ -88,13 +88,14 @@ const getUser = async () => {
 // };
 
 const getSingleUser = async (idValue: string) => {
-    console.log("id value:", idValue[0]);
+    console.log("id value:", idValue);
     try {
         const users = await User.find(
-            // { _id: { $in: '644c373c859da9d501599bb2' } },
-            { _id: { $in: idValue } },
+            { _id: { $in: '644c373c859da9d501599bb2' } },
+            // { _id: { $in: idValue } },
             { email: 1, password: 1, role: 1 }
         );
+        console.log(users)
 
         if (users.length !== 0) {
             const userRecords = users.map(user => ({
