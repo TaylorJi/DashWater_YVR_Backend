@@ -18,7 +18,7 @@ const createUser = async (email: String, password: String) => {
 
 const validateUser = async (email: String, password: String) => {
     try {
-        const user = await User.findOne({ "email": email, "password": password});
+        const user = await User.findOne({ "email": email, "password": password });
 
         if (user) {
             return user;
@@ -46,15 +46,72 @@ const getUser = async () => {
 };
 
 
-const getSingleUser = async (userId: string) => {
+// const getSingleUser = async (userId: string) => {
+//     try {
+//         const user = await User.findById(userId);
+//         return user;
+//     } catch (error) {
+//         console.error("Error retrieving user: ", error)
+//         return null;
+//     }
+// };
+
+// const getSingleUser = async (email: string, role: string) => {
+//     try {
+//         const user = await User.findOne({
+//         email,
+//         role
+//         }).select({ "email": 1, "password": 1, "role": 1 });
+//         if (user) {
+//         return user;
+//     }
+//     return false;
+//     } catch (err) {
+//         return null;
+//     }
+// };
+
+// const getSingleUser = async (idArray: string[]) => {
+//     try {
+//         const users = await User.find({
+//             _id: { $in: idArray }
+//         }).select({ "email": 1, "password": 1, "role": 1 });
+
+//         if (users.length !== 0) {
+//             return users;
+//         }
+
+//         return false;
+//     } catch (err) {
+//         return null;
+//     }
+// };
+
+const getSingleUser = async (idValue: string) => {
+    console.log("id value:", idValue[0]);
     try {
-        const user = await User.findById(userId);
-        return user;
-    } catch (error) {
-        console.error("Error retrieving user: ", error)
+        const users = await User.find(
+            // { _id: { $in: '644c373c859da9d501599bb2' } },
+            { _id: { $in: idValue } },
+            { email: 1, password: 1, role: 1 }
+        );
+
+        if (users.length !== 0) {
+            const userRecords = users.map(user => ({
+                email: user.email,
+                password: user.password,
+                role: user.role
+            }));
+            return userRecords;
+        }
+
+        return null;
+    } catch (err) {
+        console.error("Error retrieving user.");
         return null;
     }
 };
+
 
 
 export default module.exports = {
