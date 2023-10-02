@@ -11,5 +11,17 @@ Siwoon Lim
 Ellen Jung
 
 
+## Previous Team:
+
+Basil
+
+Sally
+
+Jackson
+
+Semih
+
+
+
 ## To use:
 
