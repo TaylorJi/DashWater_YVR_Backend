@@ -2,17 +2,14 @@
 Back-end repo for the 2023 iteration of the IoT Dashboard
 
 ## Team Members
-Susan Li
+Taylor Ji
 
-Sally Poon
+Nash Baek
 
-Jackson Marsnas
+Siwoon Lim
 
-Semih Erguven
+Ellen Jung
 
-Basil Kim
 
-## Starting the Server
-Run the command `npm run dev` in the terminal. This will compile TypeScript and start the server.
+## To use:
 
-Note: uncomment the cache and import on server.ts for tide data to fetch tide data, if needed. This is due to API limitations of ~5x calls a day on stormglass.io's free plan.
